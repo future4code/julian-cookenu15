@@ -1,6 +1,4 @@
-import knex from "knex";
 import { BaseDatabase } from "./BaseDatabase";
-import { USER_ROLES } from "../services/Authenticator";
 
 export class UserDatabase extends BaseDatabase {
   public async createUser(
@@ -16,7 +14,7 @@ export class UserDatabase extends BaseDatabase {
         email,
         password
       })
-      .into("User");
+      .into("Cookenu_Users");
 
     BaseDatabase.destroyConnection();
   }
@@ -34,7 +32,7 @@ export class UserDatabase extends BaseDatabase {
   public async getUserById(id: string): Promise<any> {
     const result = await this.getConnection()
       .select("*")
-      .from("User")
+      .from("Cookenu_Users")
       .where({ id });
 
     BaseDatabase.destroyConnection();

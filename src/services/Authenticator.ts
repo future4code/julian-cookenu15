@@ -5,6 +5,7 @@ export class Authenticator {
   public generateToken(input: AuthenticationData): string {
     const token = jwt.sign(
       {
+
         id: input.id
       },
       process.env.JWT_KEY as string,
