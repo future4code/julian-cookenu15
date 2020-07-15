@@ -5,16 +5,16 @@ import { USER_ROLES } from "../services/Authenticator";
 export class UserDatabase extends BaseDatabase {
   public async createUser(
     id: string,
+    name: string,
     email: string,
-    password: string,
-    role: USER_ROLES
+    password: string
   ): Promise<void> {
     await this.getConnection()
       .insert({
         id,
+        name,
         email,
-        password,
-        role,
+        password
       })
       .into("User");
 
