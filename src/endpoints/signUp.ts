@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { Authenticator } from "../services/Authenticator";
-import HashManager from "../services/HashManager";
+import { HashManager } from "../services/HashManager";
 
 export const signUp = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -13,6 +13,7 @@ export const signUp = async (req: Request, res: Response): Promise<any> => {
     const userData = {
       email: req.body.email,
       password: req.body.password,
+      name: req.body.name,
     };
 
     const hashManager = new HashManager();
@@ -22,7 +23,12 @@ export const signUp = async (req: Request, res: Response): Promise<any> => {
     const id: string = idGenerator.generate();
 
     const userGenerator = new UserDatabase();
-    await userGenerator.createUser(id, userData.email, cipherText);
+    await userGenerator.createUser(
+      id,
+      userData.name,
+      userData.email,
+      cipherText
+    );
 
     const auth = new Authenticator();
     const token = auth.generateToken({
