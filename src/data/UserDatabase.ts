@@ -22,7 +22,7 @@ export class UserDatabase extends BaseDatabase {
   public async userInfo(email: string): Promise<any> {
     const result = await this.getConnection()
       .select("*")
-      .from("User")
+      .from("Cookenu_Users")
       .where({ email });
 
     BaseDatabase.destroyConnection();
@@ -41,14 +41,14 @@ export class UserDatabase extends BaseDatabase {
 
   public async deleteUser(id: string): Promise<void> {
     await this.getConnection().raw(`
-    DELETE FROM User WHERE id = "${id}"`);
+    DELETE FROM Cookenu_Users WHERE id = "${id}"`);
 
     BaseDatabase.destroyConnection();
   }
 
   public async getInfoById(id: string): Promise<any> {
     const info = await this.getConnection().raw(`
-    SELECT id, email FROM User WHERE id = "${id}"`);
+    SELECT id, email FROM Cookenu_Users WHERE id = "${id}"`);
 
     return info[0];
   }
