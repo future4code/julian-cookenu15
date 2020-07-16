@@ -50,7 +50,7 @@ export class RecipeDatabase extends BaseDatabase {
 
   public async getInfoById(id: string): Promise<any> {
     const info = await this.getConnection().raw(`
-    SELECT id, email FROM Recipes WHERE id = "${id}"`);
+    SELECT title, description, created_at FROM Recipes WHERE id = "${id}"`);
 
     return info[0];
   }
