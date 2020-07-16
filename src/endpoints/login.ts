@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
+import { BaseDatabase } from "../data/BaseDatabase";
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -39,4 +40,5 @@ export const login = async (req: Request, res: Response) => {
       message: err.message,
     });
   }
+  BaseDatabase.destroyConnection();
 };

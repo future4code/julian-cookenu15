@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { FollowingDataBase } from "../data/FollowingDataBase";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
+import { BaseDatabase } from "../data/BaseDatabase";
 
 export const follow = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -25,4 +26,5 @@ export const follow = async (req: Request, res: Response): Promise<void> => {
       message: err.message,
     });
   }
+  await BaseDatabase.destroyConnection();
 };

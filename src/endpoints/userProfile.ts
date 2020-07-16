@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
+import { BaseDatabase } from "../data/BaseDatabase";
 
 export const userProfile = async (req: Request, res: Response) => {
   try {
@@ -21,4 +22,5 @@ export const userProfile = async (req: Request, res: Response) => {
       message: err.message,
     });
   }
+  BaseDatabase.destroyConnection();
 };

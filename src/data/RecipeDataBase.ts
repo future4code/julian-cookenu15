@@ -17,8 +17,6 @@ export class RecipeDatabase extends BaseDatabase {
         user_id,
       })
       .into("Recipes");
-
-    BaseDatabase.destroyConnection();
   }
 
   public async recipeInfo(id: string): Promise<any> {
@@ -26,8 +24,6 @@ export class RecipeDatabase extends BaseDatabase {
       .select("*")
       .from("Recipes")
       .where({ id });
-
-    BaseDatabase.destroyConnection();
     return result[0];
   }
 
@@ -36,16 +32,12 @@ export class RecipeDatabase extends BaseDatabase {
       .select("*")
       .from("Recipes")
       .where({ id });
-
-    BaseDatabase.destroyConnection();
     return result[0];
   }
 
   public async deleteRecipe(id: string): Promise<void> {
     await this.getConnection().raw(`
     DELETE FROM Recipes WHERE id = "${id}"`);
-
-    BaseDatabase.destroyConnection();
   }
 
   public async getInfoById(id: string): Promise<any> {

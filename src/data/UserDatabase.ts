@@ -15,8 +15,6 @@ export class UserDatabase extends BaseDatabase {
         password,
       })
       .into("Cookenu_Users");
-
-    BaseDatabase.destroyConnection();
   }
 
   public async userInfo(email: string): Promise<any> {
@@ -25,7 +23,6 @@ export class UserDatabase extends BaseDatabase {
       .from("Cookenu_Users")
       .where({ email });
 
-    BaseDatabase.destroyConnection();
     return result[0];
   }
 
@@ -35,15 +32,12 @@ export class UserDatabase extends BaseDatabase {
       .from("Cookenu_Users")
       .where({ id });
 
-    BaseDatabase.destroyConnection();
     return result[0];
   }
 
   public async deleteUser(id: string): Promise<void> {
     await this.getConnection().raw(`
     DELETE FROM Cookenu_Users WHERE id = "${id}"`);
-
-    BaseDatabase.destroyConnection();
   }
 
   public async getInfoById(id: string): Promise<any> {

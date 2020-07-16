@@ -3,6 +3,7 @@ import { Authenticator } from "../services/Authenticator";
 import { RecipeDatabase } from "../data/RecipeDataBase";
 import moment from "moment";
 import { IdGenerator } from "../services/IdGenerator";
+import { BaseDatabase } from "../data/BaseDatabase";
 export const newRecipe = async (req: Request, res: Response) => {
   try {
     const token = req.headers.authorization as string;
@@ -36,4 +37,5 @@ export const newRecipe = async (req: Request, res: Response) => {
       message: err.message,
     });
   }
+  BaseDatabase.destroyConnection();
 };
