@@ -7,6 +7,7 @@ import { userProfile } from "./endpoints/userProfile";
 import { Authenticator } from "./services/Authenticator";
 import { newRecipe } from "./endpoints/newRecipe";
 import { getRecipe } from "./endpoints/getRecipe";
+import { follow } from "./endpoints/follow";
 
 dotenv.config();
 
@@ -23,6 +24,9 @@ app.get("/user/profile", userProfile);
 app.post("/recipe", newRecipe);
 
 app.get("/recipe/:id", getRecipe);
+
+app.post("/user/follow", follow);
+
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
