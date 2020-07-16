@@ -29,7 +29,7 @@ export const newRecipe = async (req: Request, res: Response) => {
     );
 
     res.status(200).send({
-      message: `Recipe ${recipeData.title} created successfuldescrly`,
+      message: `Recipe ${recipeData.title} created successfully`,
     });
   } catch (err) {
     res.status(400).send({
