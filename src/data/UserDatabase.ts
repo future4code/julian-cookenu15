@@ -12,7 +12,7 @@ export class UserDatabase extends BaseDatabase {
         id,
         name,
         email,
-        password
+        password,
       })
       .into("Cookenu_Users");
 
