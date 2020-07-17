@@ -10,6 +10,7 @@ import { getRecipe } from "./endpoints/getRecipe";
 import { follow } from "./endpoints/follow";
 import { feed } from "./endpoints/feed";
 import { getFollowing } from "./endpoints/getFollowing";
+import { unfollow } from "./endpoints/unfollow";
 
 dotenv.config();
 
@@ -32,6 +33,9 @@ app.post("/user/follow", follow);
 app.get("/user/feed", feed);
 
 app.get("/user/followers", getFollowing);
+
+app.post("/user/unfollow", unfollow);
+
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
