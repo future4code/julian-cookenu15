@@ -46,4 +46,11 @@ export class RecipeDatabase extends BaseDatabase {
 
     return info[0];
   }
+
+  public async getRecipesByUserId(user_id: string): Promise<any> {
+    const feed = await this.getConnection().raw(`
+      SELECT * FROM Recipes WHERE user_id = "${user_id}"`);
+
+    return feed[0];
+  }
 }

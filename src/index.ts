@@ -8,6 +8,8 @@ import { Authenticator } from "./services/Authenticator";
 import { newRecipe } from "./endpoints/newRecipe";
 import { getRecipe } from "./endpoints/getRecipe";
 import { follow } from "./endpoints/follow";
+import { feed } from "./endpoints/feed";
+import { getFollowing } from "./endpoints/getFollowing";
 
 dotenv.config();
 
@@ -27,6 +29,9 @@ app.get("/recipe/:id", getRecipe);
 
 app.post("/user/follow", follow);
 
+app.get("/user/feed", feed);
+
+app.get("/user/followers", getFollowing);
 const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
